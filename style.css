@@ -1,0 +1,103 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: oldlace;
+  
+}
+.color{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cards {
+  border: 1px solid black;
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+  display: inline-block;
+ border-radius: 10px;
+ background-color: palevioletred;
+ flex-wrap: wrap;
+}
+
+#game{
+  height: 100%;
+  width: 100%;
+}
+#start {
+  display: grid;
+  place-items: center;
+}
+
+h1{
+  text-align: center;
+
+} */
+
+/*.color{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-template-columns: repeat(5, 1fr);
+  height: 110px;
+  width: 90px;
+  background-color: pink; 
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s all ease;  */
+/* }
+
+.color img {
+  max-width: 80%;
+  max-height: 90px;
+  min-height: 100%;
+  transition: 0.3s all ease;
+} */
+
+#game div {
+  border: 1px solid black;
+  width: 15%;
+  height: 200px;
+  margin: 10px;
+  display: inline-block;
+  background-color: purple;
+  transition: transform 0.25s linear;
+  transform: rotateY(180deg);
+}
+
+img {
+  height: 200px;
+  width: 100%;
+  opacity: 0;
+}
+
+img:hover {
+  opacity: 1;
+}
+
+/* @keyframes shake{
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+} */
