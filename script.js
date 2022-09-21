@@ -1,18 +1,21 @@
 const gameContainer = document.getElementById("game");
 const startGame = document.querySelector('button');
 const buttons = document.querySelector('form');
-const counter = document.createElement('p')
+const counter = document.createElement('p');
+
 buttons.append(counter)
   let score = 0;
   let firstCard = '';
   let secondCard = '';  
 
+  /*
   function keyFramesShake () {
     {transform: 'translate3d(-1+px, 0, 0)'}
     {transform: 'translate3d(2+px, 0, 0)'}
     {transform: 'translate3d(-4+px, 0, 0)'}
     {transform: 'translate3d(4+px, 0, 0)'}
   }
+  */
 
 //  const keyFramesShakeTime = {duration: 500}  
 
