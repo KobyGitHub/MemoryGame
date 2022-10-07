@@ -80,9 +80,9 @@ img {
   opacity: 0;
 }
 
-img:hover {
+/* img:hover {
   opacity: 1;
-}
+} */
 
 /* @keyframes shake{
   10%, 90% {

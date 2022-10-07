@@ -8,8 +8,6 @@ buttons.append(counter)
   let firstCard = '';
   let secondCard = '';  
 
-
-
 const COLORS = [
   "red",
   "blue",
@@ -38,9 +36,12 @@ buttons.addEventListener('click', function(e){
   startGame.addEventListener('click', function(e){
     e.target.innerHTML = "Restart Game"
 
+    // Display cards AFTER start
+    createDivsForColors(shuffledColors);
+
     if (e.target.innerHTML = "Restart Game"){
       startGame.addEventListener('click', function(){
-        window.location.reload()
+        window.location.reload();
       })
     }
   })
@@ -78,13 +79,12 @@ function createDivsForColors(colorArray) {
     img.src = "memes/" + colorArray.indexOf(color) + ".jpeg";
     newDiv.append(img)
     
-    newDiv.addEventListener("click", function(){
-      let count = 0
-      count++
-      counter.innerText = 'Score: ' + count 
-
-    })
-    
+    // newDiv.addEventListener("click", function(){
+    //   let count = 0
+    //   count++
+    //   counter.innerText = 'Score: ' + count 
+    // }
+    // )    
 
   }
 }
@@ -93,52 +93,57 @@ function createDivsForColors(colorArray) {
 function handleCardClick(event) {
   //event.target.parentElement.classList.add('clicked');
 
+  // This is image name/path
+  alert(event.target.src);
+
+  // Change Opactiy When Clicked
+  event.target.style.opacity=1;
+
   
-  if (score === 0){
-    firstCard = event.target
-    score++;
-  } else if (score !== 0) {
-    secondCard = event.target;
-    // score = 0;
+  // if (score === 0){
+  //   firstCard = event.target
+  //   score++;
+  // } else if (score !== 0) {
+  //   secondCard = event.target;
+  //   // score = 0;
     
-    
-    if (firstCard.src == secondCard.src){
-      let selectedCards = [firstCard, secondCard.parentElement]
+  //   if (firstCard.src == secondCard.src){
+  //     let selectedCards = [firstCard, secondCard.parentElement]
       
-      firstCard.parentElement.setAttribute('class', 'checked');
-      secondCard.parentElement.setAttribute('class', 'checked');
+  //     firstCard.parentElement.setAttribute('class', 'checked');
+  //     secondCard.parentElement.setAttribute('class', 'checked');
 
-      for (let cards of selectedCards){
-        if (cards.class === 'class checked'){
-          firstCard.style.opacity = 1
-        }
+  //     for (let cards of selectedCards){
+  //       if (cards.class === 'class checked'){
+  //         firstCard.style.opacity = 1
+  //       }
 
-      }
+  //     }
 
-      selectedCards[0].removeAttribute('class');
-      selectedCards[1].removeAttribute('class');
-    } else {
-      let incorrectCards = [firstCard.parentElement, secondCard.parentElement]
+  //     selectedCards[0].removeAttribute('class');
+  //     selectedCards[1].removeAttribute('class');
+  //   } else {
+  //     let incorrectCards = [firstCard.parentElement, secondCard.parentElement]
        
-      incorrectCards[0].parentElement.setAttribute('class', 'shake');
-      incorrectCards[1].parentElement.setAttribute('class', 'shake');
+  //     incorrectCards[0].parentElement.setAttribute('class', 'shake');
+  //     incorrectCards[1].parentElement.setAttribute('class', 'shake');
 
-      for (let card of incorrectCards){
-        if (card.class = 'shake') {
-          // firstCard.style.backgroundColor = "red";
-          firstCard.classList.add = "animate__animated animate__bounce";
+  //     for (let card of incorrectCards){
+  //       if (card.class = 'shake') {
+  //         // firstCard.style.backgroundColor = "red";
+  //         firstCard.classList.add = "animate__animated animate__bounce";
 
           
 
-          setTimeout(function(){
-            incorrectCards[0].removeAttribute('class');
-            incorrectCards[1].removeAttribute('class');
-          }, 1000)
-        }
-      }  
-    } 
-  }  console.log(firstCard)
-      console.log(secondCard)
+  //         setTimeout(function(){
+  //           incorrectCards[0].removeAttribute('class');
+  //           incorrectCards[1].removeAttribute('class');
+  //         }, 1000)
+  //       }
+  //     }  
+  //   } 
+  // }  console.log(firstCard)
+  //     console.log(secondCard)
 
 
 
@@ -148,5 +153,4 @@ function handleCardClick(event) {
 
 
 // when the DOM loads
-createDivsForColors(shuffledColors);
-
+// createDivsForColors(shuffledColors);
