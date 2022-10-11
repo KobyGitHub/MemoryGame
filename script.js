@@ -1,3 +1,7 @@
+// document.addEventListener("DOMContentLoaded", Go())
+
+
+
 const gameContainer = document.getElementById("game");
 const startGame = document.querySelector('#start');
 const buttons = document.querySelector('form');
@@ -24,20 +28,12 @@ const COLORS = [
 buttons.addEventListener('click', function(e){
   e.preventDefault()
 })
-
-// startGame.addEventListener('click', function(){
-//     const restartGame = document.createElement('button');
-//     restartGame.setAttribute('type', 'submit');
-//     restartGame.innerHTML = 'Restart Game'
-//     buttons.append(restartGame) 
-
-// })
+    
 
   startGame.addEventListener('click', function(e){
-    e.target.innerHTML = "Restart Game"
-
-    // Display cards AFTER start
     createDivsForColors(shuffledColors);
+    
+    e.target.innerHTML = "Restart Game"
 
     if (e.target.innerHTML = "Restart Game"){
       startGame.addEventListener('click', function(){
@@ -45,6 +41,7 @@ buttons.addEventListener('click', function(e){
       })
     }
   })
+
 
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -65,92 +62,84 @@ function shuffle(array) {
 
 let shuffledColors = shuffle(COLORS);
 
-// this function loops over the array of colors
-// it creates a new div and gives it a class with the value of the color
-// it also adds an event listener for a click for each card
+
+
 function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     const newDiv = document.createElement("div");
     newDiv.classList.add(color);
-    newDiv.addEventListener("click", handleCardClick);
+    newDiv.setAttribute('id', colorArray.indexOf(color))
+    newDiv.addEventListener("click", flipCard);
     gameContainer.append(newDiv);
 
     const img = document.createElement('img');
     img.src = "memes/" + colorArray.indexOf(color) + ".jpeg";
     newDiv.append(img)
-    
-    // newDiv.addEventListener("click", function(){
-    //   let count = 0
-    //   count++
-    //   counter.innerText = 'Score: ' + count 
-    // }
-    // )    
-
   }
 }
 
-// TODO: Implement this function!
+  const resultDisplay = document.querySelector('#result')
+  let cardsChosen = []
+  let cardsChosenId = []
+  let cardsWon = []
+
 function handleCardClick(event) {
-  //event.target.parentElement.classList.add('clicked');
-
-  // This is image name/path
-  alert(event.target.src);
-
-  // Change Opactiy When Clicked
-  event.target.style.opacity=1;
-
-  
-  // if (score === 0){
-  //   firstCard = event.target
-  //   score++;
-  // } else if (score !== 0) {
-  //   secondCard = event.target;
-  //   // score = 0;
-    
-  //   if (firstCard.src == secondCard.src){
-  //     let selectedCards = [firstCard, secondCard.parentElement]
+    const cards = document.querySelectorAll('img')
+    for( let i = 0; i > cards.length; i++){
+      const optionOneId = cardsChosenId[0]
+      const optionTwoId = cardsChosenId[1]
       
-  //     firstCard.parentElement.setAttribute('class', 'checked');
-  //     secondCard.parentElement.setAttribute('class', 'checked');
+      if(optionOneId == optionTwoId) {
+        optionOneId.setAttribute('src', 'Meme.png')
+        optionTwoId.setAttribute('src', 'Meme.png')
+      alert('You have clicked the same image!')
+    }
+    else if (cardsChosen[0] === cardsChosen[1]) {
+      alert('You found a match')
+      cards[optionOneId].setAttribute('src', 'white.png')
+      cards[optionTwoId].setAttribute('src', 'white.png')
+      cards[optionOneId].removeEventListener('click', flipCard)
+      cards[optionTwoId].removeEventListener('click', flipCard)
+      cardsWon.push(cardsChosen)
+    } else {
+      cards[optionOneId].setAttribute('src', 'images/blank.png')
+      cards[optionTwoId].setAttribute('src', 'images/blank.png')
+      alert('Sorry, try again')
+    }
+    cardsChosen = []
+    cardsChosenId = []
+    resultDisplay.textContent = cardsWon.length
+    if  (cardsWon.length === cardArray.length/2) {
+      resultDisplay.textContent = 'Congratulations! You found them all!'
+    }
 
-  //     for (let cards of selectedCards){
-  //       if (cards.class === 'class checked'){
-  //         firstCard.style.opacity = 1
-  //       }
+    }
+  }
 
-  //     }
-
-  //     selectedCards[0].removeAttribute('class');
-  //     selectedCards[1].removeAttribute('class');
-  //   } else {
-  //     let incorrectCards = [firstCard.parentElement, secondCard.parentElement]
-       
-  //     incorrectCards[0].parentElement.setAttribute('class', 'shake');
-  //     incorrectCards[1].parentElement.setAttribute('class', 'shake');
-
-  //     for (let card of incorrectCards){
-  //       if (card.class = 'shake') {
-  //         // firstCard.style.backgroundColor = "red";
-  //         firstCard.classList.add = "animate__animated animate__bounce";
-
-          
-
-  //         setTimeout(function(){
-  //           incorrectCards[0].removeAttribute('class');
-  //           incorrectCards[1].removeAttribute('class');
-  //         }, 1000)
-  //       }
-  //     }  
-  //   } 
-  // }  console.log(firstCard)
-  //     console.log(secondCard)
-
-
-
-
-    // counter.innerText = 'Score:' + score 
-}
+    function flipCard() {
+      const carders = document.querySelectorAll('img')
+      const cardArray = Array.from(carders)
+      let cardId = this.getAttribute('data-id')
+      
+      const name = Array.from(carders).map(function(name, num, list){
+        if (cardId = num ){
+          return name
+        }
+      })
 
 
-// when the DOM loads
-// createDivsForColors(shuffledColors);
+   
+    cardsChosen.push(cardArray[cardId])
+    cardsChosenId.push(cardId)
+    this.setAttribute('src', name[cardId].src)
+    if (cardsChosen.length ===2) {
+      setTimeout(handleCardClick, 500)
+    }
+        
+    }
+
+   
+    
+
+
+
